@@ -3,8 +3,8 @@
 int main(void) {
 
 	DrawAPI* api = new DrawImpl();
-	Charachter* charachter = new Player(api);
-	charachter->Draw();
+	Character* character = new Player(api);
+	character->Draw();
 
 	std::cin.get();
 }

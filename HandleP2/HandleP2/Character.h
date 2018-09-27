@@ -1,11 +1,13 @@
 #pragma once
 #include <iostream>
 #include "DrawAPI.h""
-class Charachter {
+
+class Character {
 public:
 	virtual void Draw() = 0;
 };
-class Player : public Charachter {
+
+class Player : public Character {
 public:
 	Player(DrawAPI* api) {
 		this->api = api;

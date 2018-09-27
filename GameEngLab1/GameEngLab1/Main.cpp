@@ -3,7 +3,7 @@
 #include <vector>
 
 int main() {
-	Factory* factory = new CharachterFactory;
+	Factory* factory = new CharacterFactory;
 	std::vector<Character*> characters;
 	characters.push_back(factory->CreatePlayer());
 	characters.push_back(factory->CreateOpponents());

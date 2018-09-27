@@ -28,7 +28,7 @@ public:
 	virtual Character* CreateOpponents() = 0;
 };
 
-class CharachterFactory : public Factory {
+class CharacterFactory : public Factory {
 public:
 	Character * CreatePlayer() {
 		return new Player;
