@@ -1,25 +1,16 @@
-//#include <iostream>
-//#include <SDL.h>
-//
-//int main(int argc, char *argv[])
-//{
-//	if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
-//	{
-//		std::cout << "SDL could not initialise! SDL error: " << SDL_GetError() << std::endl;
-//	}
-//
-//	return EXIT_SUCCESS;
-//}
-
 #include <SDL.h>
 #include <stdio.h>
+#include "InputHandler.h"
 
 //Screen dimension constants
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+const int SCREEN_WIDTH = 10;
+const int SCREEN_HEIGHT = 10;
 
 int main(int argc, char* args[])
 {
+	int quit = 0;
+	SDL_Event event;
+	InputHandler * handler = new InputHandler();
 	//The window we'll be rendering to
 	SDL_Window* window = NULL;
 
@@ -52,6 +43,14 @@ int main(int argc, char* args[])
 
 			//Wait two seconds
 			SDL_Delay(2000);
+		}
+	}
+
+	while (!quit)
+	{
+		while (SDL_PollEvent(&event))
+		{
+			handler->handleInput(event);
 		}
 	}
 
