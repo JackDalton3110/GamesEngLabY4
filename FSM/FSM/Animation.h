@@ -7,7 +7,10 @@ class Animation
 public:
 	Animation();
 
-	void setCurrent(State* s);
+	void setCurrent(State* s)
+	{
+		current = s;
+	}
 	
 
 	void idle();

@@ -21,7 +21,3 @@ void Animation::climb()
 	current->climbing(this);
 }
 
-void Animation::setCurrent(State* s)
-{
-		current = s;
-}
