@@ -1,13 +1,16 @@
 #pragma once
 #include <iostream>
+
+//Base
 class Character {
 public:
 	Character() {}
 	virtual ~Character() {}
 	virtual void draw() = 0;
-
 };
 
+
+//Concrete family 1
 class Player : public Character {
 public:
 	void draw() {
@@ -15,6 +18,7 @@ public:
 	}
 };
 
+//Concrete family 2
 class Boss : public Character {
 public:
 	void draw() {
@@ -22,12 +26,15 @@ public:
 	}
 };
 
+
+//Creates concrete virtual product
 class Factory {
 public:
 	virtual Character* CreatePlayer() = 0;
 	virtual Character* CreateOpponents() = 0;
 };
 
+//returns products
 class CharacterFactory : public Factory {
 public:
 	Character * CreatePlayer() {

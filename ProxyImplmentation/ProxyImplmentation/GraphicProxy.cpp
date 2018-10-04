@@ -28,7 +28,7 @@ Graphic* GraphicProxy::getInstance(void) {
 	return graphic;
 }
 
-void GraphicProxy::Draw() {
-
+void GraphicProxy::Draw() 
+{
 	getInstance()->Draw();
 }

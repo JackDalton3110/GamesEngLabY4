@@ -2,6 +2,8 @@
 #include <iostream>
 #include "DrawAPI.h""
 
+//Refinment and Implentation
+
 class Character {
 public:
 	virtual void Draw() = 0;
@@ -13,8 +15,8 @@ public:
 		this->api = api;
 	}
 	void Draw() {
-		api->Draw();
+		api->Draw();//implementation
 	}
 private:
-	DrawAPI * api;
+	DrawAPI * api; 
 };
