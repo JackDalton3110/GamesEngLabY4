@@ -6,8 +6,8 @@
 class Climbing : public State
 {
 public:
-	Climbing();
-	~Climbing();
+	Climbing() {};
+	~Climbing() {};
 	void idle(Animation* a)
 	{
 		std::cout << "Going from Climbing to Idling" << std::endl;

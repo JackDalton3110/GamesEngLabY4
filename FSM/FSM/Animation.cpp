@@ -13,10 +13,15 @@ void Animation::idle()
 
 void Animation::jump()
 {
-	current->jump(this);
+	current->jumping(this);
 }
 
 void Animation::climb()
 {
-	current->climb(this);
+	current->climbing(this);
+}
+
+void Animation::setCurrent(State* s)
+{
+		current = s;
 }

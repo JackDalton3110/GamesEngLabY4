@@ -1,24 +1,18 @@
 #include"Idle.h"
+#include "Jump.h"
+#include "Climb.h"
 
-Idle::Idle()
-{
-	std::cout << "Idle created" << std::endl;
-}
-
-Idle::~Idle() {
-
-}
 
 void Idle::jumping(Animation* a)
 {
 	std::cout << "Jumping" << std::endl;
-	a->setCurrent(new Idle());
+	a->setCurrent(new Jumping());
 	delete this;
 }
 
 void Idle::climbing(Animation* a)
 {
 	std::cout << "Climbing" << std::endl;
-	a->setCurrent(new Idle());
+	a->setCurrent(new Climbing());
 	delete this;
 }

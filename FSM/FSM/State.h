@@ -9,12 +9,12 @@ public:
 		std::cout << "State::Idling" << std::endl;
 	}
 
-	virtual void jump(Animation* a)
+	virtual void jumping(Animation* a)
 	{
 		std::cout << "State::Jumping" << std::endl;
 	}
 
-	virtual void climb(Animation* a)
+	virtual void climbing(Animation* a)
 	{
 		std::cout << "State::Climbing" << std::endl;
 	}

@@ -25,13 +25,13 @@ void InputHandler::handleInput(SDL_Event & event)
 	case SDL_KEYDOWN:
 		switch (event.key.keysym.sym)
 		{
-		case SDLK_1:
+		case SDLK_w:
 			fsm.jump();
 			break;
-		case SDLK_2:
+		case SDLK_a:
 			fsm.climb();
 			break;
-		case SDLK_3:
+		case SDLK_s:
 			fsm.idle();
 			break;
 		//case SDLK_k:
