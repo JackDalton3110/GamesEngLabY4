@@ -19,11 +19,11 @@ public:
 	void handleInput(SDL_Event & event);
 
 private:
-	Command * buttonJ_;
-	Command * buttonH_;
+	Command * buttonT_;
+	Command * buttonY_;
 	Command * buttonU_;
-	Command * buttonK_;
 	Command * buttonI_;
+	Command * buttonO_;
 	MacroCommand * macro;
 
 };

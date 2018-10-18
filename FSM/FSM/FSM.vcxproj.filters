@@ -69,4 +69,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Cuphead.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="jump.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="run.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
 </Project>

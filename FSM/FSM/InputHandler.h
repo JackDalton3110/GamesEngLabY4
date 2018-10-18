@@ -18,17 +18,20 @@ public:
 	InputHandler();
 	~InputHandler();
 
+
+	enum Action
+	{
+		IDLE,
+		JUMP,
+		CLIMB
+	};
 	void handleInput(SDL_Event & event);
-
-
-
+	void setCurrent(Action);
+	Action getCurrent();
 private:
-	Command * buttonJ_;
-	Command * buttonH_;
-	Command * buttonU_;
-	Command * buttonK_;
-	Command * buttonI_;
-	MacroCommand * macro;
-	Animation fsm;
+
+
+	Animation * fsm;
+	Action m_current;
 
 };

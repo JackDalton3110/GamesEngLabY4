@@ -1,23 +1,42 @@
 #include <stdio.h>
 #include "InputHandler.h"
 #include <SDL.h>
+#include <SDL_image.h>
+#include <string>
+#include "State.h"
 
 //Screen dimension constants
-const int SCREEN_WIDTH = 300;
-const int SCREEN_HEIGHT = 300;
+const int SCREEN_WIDTH = 800;
+const int SCREEN_HEIGHT = 400;
+const int SPRITE = 560;
 
-int main(int argc, char* args[])
+bool init();
+bool loadMedia();
+void close();
+
+SDL_Surface* loadSurface(std::string location);
+SDL_Surface* ScreenSurface = NULL;
+SDL_Surface* PNGSurface = NULL;
+SDL_Window* window = NULL;
+
+SDL_Rect beginRect;
+SDL_Rect endRect;
+
+State current;
+
+bool init()
 {
-	int quit = 0;
-	SDL_Event event;
-	InputHandler * handler = new InputHandler();
-	//The window we'll be rendering to
-	SDL_Window* window = NULL;
+	bool success = true;
+	beginRect.x = 100;
+	beginRect.y =100;
+	beginRect.w = 558;
+	beginRect.h = 828;
 
-	//The surface contained by the window
-	SDL_Surface* screenSurface = NULL;
-
-	//Initialize SDL
+	endRect.x = 0;
+	endRect.y = 0;
+	endRect.w = 558;
+	endRect.h = 828;
+	
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
 		printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
@@ -29,36 +48,138 @@ int main(int argc, char* args[])
 		if (window == NULL)
 		{
 			printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
+			success = false;
 		}
 		else
 		{
 			//Get window surface
-			screenSurface = SDL_GetWindowSurface(window);
+			int imgFlags = IMG_INIT_PNG;
 
-			//Fill the surface white
-			SDL_FillRect(screenSurface, NULL, SDL_MapRGB(screenSurface->format, 0xFF, 0xFF, 0xFF));
-
-			//Update the surface
-			SDL_UpdateWindowSurface(window);
-
-			//Wait two seconds
-			SDL_Delay(2000);
+			if (!(IMG_Init(imgFlags) & imgFlags))
+			{
+				printf("SDL_Image could not load! SDL_image Error: %s\n", IMG_GetError());
+				success = false;
+			}
+			else
+			{
+				ScreenSurface = SDL_GetWindowSurface(window);
+			}
 		}
-	}
 
-	while (!quit)
+	}
+	return success;
+}
+
+bool loadMedia()
+{
+	bool success = true;
+	PNGSurface = loadSurface("spritesheet.png");
+	if (PNGSurface == NULL)
 	{
-		while (SDL_PollEvent(&event))
+		std::cout << "Failed to load image" << std::endl;
+		success = false;
+	}
+	return success;
+}
+
+void close()
+{
+	SDL_FreeSurface(PNGSurface);
+	PNGSurface = NULL;
+
+	SDL_DestroyWindow(window);
+	window = NULL;
+
+	IMG_Quit();
+	SDL_Quit();
+}
+
+SDL_Surface* loadSurface(std::string location)
+{
+	SDL_Surface* optimizedSurface = NULL;
+
+	SDL_Surface* loadedSurface = IMG_Load(location.c_str());
+	if (loadedSurface == NULL)
+	{
+		printf("Unable to load image %s! SDL_image Error: %s\n", location.c_str(), IMG_GetError());
+	}
+	else
+	{
+		optimizedSurface = SDL_ConvertSurface(loadedSurface, ScreenSurface->format, NULL);
+		if (optimizedSurface == NULL)
 		{
-			handler->handleInput(event);
+			printf("Unable to optimize image %s! SDL Error: %s\n", location.c_str(), SDL_GetError());
+		}
+
+		SDL_FreeSurface(loadedSurface);
+	}
+	return optimizedSurface;
+}
+
+int main(int argc, char* args[])
+{
+	InputHandler * handler = new InputHandler();
+	//The window we'll be rendering to
+
+	if (!init())
+	{
+		printf("Failed to initialize \n");
+	}
+	else
+	{
+		if (!loadMedia())
+		{
+			printf("Failed to load media! \n");
+		}
+		else
+		{
+			bool quit = false;
+			SDL_Event e;
+
+			while (!quit)
+			{
+				while (SDL_PollEvent(&e) != 0)
+				{
+					handler->handleInput(e);
+					
+					if (e.type == SDL_QUIT)
+					{
+						quit = true;
+					}
+				}
+				if (handler->getCurrent() == handler->IDLE)
+				{
+					endRect.y = 0;
+				}
+				if (handler->getCurrent() == handler->JUMP)
+				{
+					
+					endRect.y = 915;
+				}
+				if (handler->getCurrent() == handler->CLIMB)
+				{
+					endRect.y = 781;
+					
+				}
+
+				endRect.x = endRect.x + 116;
+				endRect.w = 116;
+				endRect.h = 134;
+
+				if (endRect.x > 470)
+				{
+					endRect.x = 0;
+				}
+				//Apply the PNG image
+				SDL_BlitSurface(PNGSurface, &endRect, ScreenSurface, &beginRect);
+
+				//Update the surface
+				SDL_UpdateWindowSurface(window);
+			}
 		}
 	}
 
-	//Destroy window
-	SDL_DestroyWindow(window);
-
-	//Quit SDL subsystems
-	SDL_Quit();
+	close();
 
 	return 0;
 }
