@@ -79,5 +79,8 @@
     <Image Include="run.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="spritesheet.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

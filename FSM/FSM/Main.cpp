@@ -135,6 +135,7 @@ int main(int argc, char* args[])
 		{
 			bool quit = false;
 			SDL_Event e;
+			int count = 0;
 
 			while (!quit)
 			{
@@ -154,27 +155,37 @@ int main(int argc, char* args[])
 				if (handler->getCurrent() == handler->JUMP)
 				{
 					
-					endRect.y = 915;
+					endRect.y = 345;
 				}
 				if (handler->getCurrent() == handler->CLIMB)
 				{
-					endRect.y = 781;
+					endRect.y = 169;
 					
 				}
 
-				endRect.x = endRect.x + 116;
+				count++;
 				endRect.w = 116;
 				endRect.h = 134;
+
+				if (count > 500)
+				{
+					endRect.x = endRect.x + 116;
+					count = 0;
+				}
 
 				if (endRect.x > 470)
 				{
 					endRect.x = 0;
 				}
+				
 				//Apply the PNG image
 				SDL_BlitSurface(PNGSurface, &endRect, ScreenSurface, &beginRect);
 
 				//Update the surface
 				SDL_UpdateWindowSurface(window);
+				
+				
+				
 			}
 		}
 	}
