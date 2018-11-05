@@ -6,18 +6,18 @@ Animation::Animation()
 	current = new Idle();
 }
 
-void Animation::idle()
+void Animation::idle(SDL_Rect &endrect)
 {
-	current->idle(this);
+	current->idle(this, endrect);
 }
 
-void Animation::jump()
+void Animation::jump(SDL_Rect &endrect)
 {
-	current->jumping(this);
+	current->jumping(this, endrect);
 }
 
-void Animation::climb()
+void Animation::climb(SDL_Rect &endrect)
 {
-	current->climbing(this);
+	current->climbing(this, endrect);
 }
 

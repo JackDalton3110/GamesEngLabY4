@@ -3,5 +3,7 @@
 
 class Component
 {
-
+public :
+	virtual ~Component() {};
+	virtual int getID() = 0;
 };

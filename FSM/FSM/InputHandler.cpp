@@ -20,7 +20,7 @@ InputHandler::Action InputHandler::getCurrent() {
 
 
 
-void InputHandler::handleInput(SDL_Event & event)
+void InputHandler::handleInput(SDL_Event & event, SDL_Rect &endrect)
 {
 
 	switch (event.type)
@@ -29,18 +29,13 @@ void InputHandler::handleInput(SDL_Event & event)
 		switch (event.key.keysym.sym)
 		{
 		case SDLK_1:
-			fsm->jump();
-			if (getCurrent() == IDLE)
-			setCurrent(JUMP);
+			fsm->jump(endrect);
 			break;
 		case SDLK_2:
-			fsm->climb();
-			if (getCurrent() == IDLE)
-			setCurrent(CLIMB);
+			fsm->climb(endrect);
 			break;
 		case SDLK_3:
-			fsm->idle();
-			setCurrent(IDLE);
+			fsm->idle(endrect);
 			break;
 	
 		}

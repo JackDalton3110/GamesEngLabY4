@@ -1,14 +1,19 @@
 #pragma once
+#include <vector>
 #include "Component.h"
 
 class PositionComponent : public Component
 {
 public:
-	PositionComponent() : health(100) {}
+	PositionComponent() : posX(200.f), posY(200.f) {}
 
-	int getHealth() { return health; }
-	void setHealth(int health) { this->health = health; }
+	float getPosX() { return posX; }
+	float getPosY() { return posY; }
+	void setPos(float x, float y) { this->posX = x; this->posY; }
+	int getID() { return id; }
 
 private:
-	int health;
+	float posX;
+	float posY;
+	int id = 1;
 };

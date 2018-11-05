@@ -25,7 +25,7 @@ public:
 		JUMP,
 		CLIMB
 	};
-	void handleInput(SDL_Event & event);
+	void handleInput(SDL_Event & event, SDL_Rect &endrect);
 	void setCurrent(Action);
 	Action getCurrent();
 private:

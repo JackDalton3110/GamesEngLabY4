@@ -132,14 +132,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AISystem.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="RenderSystem.cpp" />
+    <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AISystem.h" />
     <ClInclude Include="Component.h" />
+    <ClInclude Include="controlComponent.h" />
+    <ClInclude Include="ControlSystem.h" />
     <ClInclude Include="HealthComponent.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="HealthSystem.h" />
     <ClInclude Include="PositionComponent.h" />
-    <ClInclude Include="System.h" />
+    <ClInclude Include="PositionSystem.h" />
+    <ClInclude Include="RenderSystem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

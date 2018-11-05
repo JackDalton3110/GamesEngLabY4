@@ -141,33 +141,19 @@ int main(int argc, char* args[])
 			{
 				while (SDL_PollEvent(&e) != 0)
 				{
-					handler->handleInput(e);
+					handler->handleInput(e, endRect);
 					
 					if (e.type == SDL_QUIT)
 					{
 						quit = true;
 					}
 				}
-				if (handler->getCurrent() == handler->IDLE)
-				{
-					endRect.y = 0;
-				}
-				if (handler->getCurrent() == handler->JUMP)
-				{
-					
-					endRect.y = 345;
-				}
-				if (handler->getCurrent() == handler->CLIMB)
-				{
-					endRect.y = 169;
-					
-				}
 
 				count++;
 				endRect.w = 116;
 				endRect.h = 134;
 
-				if (count > 500)
+				if (count > 550)
 				{
 					endRect.x = endRect.x + 116;
 					count = 0;
