@@ -1,9 +1,5 @@
 #include "AISystem.h"
 
-void AISystem::addEntity(Entity e)
-{
-	m_entities.push_back(e);
-}
 
 void AISystem::update()
 {
@@ -11,19 +7,20 @@ void AISystem::update()
 	{
 		for (Component *component : entity.getComponents())
 		{
-			if (component->getID == 1)
+			if (component->getID() == 1)
 			{
 				posComp = dynamic_cast<PositionComponent*>(component);
+				x = posComp->getPosX();
+				y = posComp->getPosY();
+
+				y -= speed;
+				x -= speed;
+
+				BoundaryChecking();
+				std::pair<float, float> pos = { x,y };
+				posComp->setPos(x, y);
 			}
 		}
-		x = posComp->getPosX();
-		y = posComp->getPosY();
-
-		y -= speed;
-
-		BoundaryChecking();
-		std::pair<float, float>m_pos = { x,y };
-		posComp->setPos(x, y);
 	}
 }
 

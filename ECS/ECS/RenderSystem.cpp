@@ -4,7 +4,7 @@ RenderSystem::RenderSystem() {
 
 }
 
-void RenderSystem::addEntity(Entity* e)
+void RenderSystem::addEntity(Entity e)
 {
 	m_entities.push_back(e);
 }
@@ -14,17 +14,20 @@ void RenderSystem::update()
 	int index = 0;
 
 	std::cout << "Render System update" << std::endl;
-	for (Entity* entity : m_entities)
+	for (Entity entity : m_entities)
 	{
-		for (Component *component : entity->getComponents())
+		for (Component *component : entity.getComponents())
 		{
-			if (component->getID == 2)
+			if (component->getID() == 2)
 			{
 				std::cout << "Checking position component " << index << std::endl;
+				
 			}
 		}
 		std::cout << "Drawing entity " << index << std::endl;
 		index++;
 	}
+	std::cout << " " << std::endl;
+	std::cout << " " << std::endl;
 
 }

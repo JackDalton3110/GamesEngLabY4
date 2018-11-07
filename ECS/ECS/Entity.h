@@ -3,6 +3,7 @@
 #include "Component.h"
 #include "HealthComponent.h"
 #include "PositionComponent.h"
+#include "controlComponent.h"
 #include <vector>
 
 

@@ -7,11 +7,11 @@
 using namespace std;
 
 class RenderSystem {
-	std::vector<Entity*> m_entities;
+	std::vector<Entity> m_entities;
 
 public:
 	RenderSystem();
-	void addEntity(Entity *e);
+	void addEntity(Entity e);
 	void update();
 
 private:

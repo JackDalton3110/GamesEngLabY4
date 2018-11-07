@@ -22,6 +22,7 @@ public:
 					float posY = dynamic_cast<PositionComponent*>(component)->getPosY();
 
 					std::cout << "Checking position component" << std::endl;
+					std::cout << "" << std::endl;
 				}
 			}
 		}

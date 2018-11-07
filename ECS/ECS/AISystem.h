@@ -10,21 +10,7 @@ class AISystem
 
 public:
 	void addEntity(Entity e) { entities.push_back(e); }
-	void update() {
-		std::cout << "PositionSystem Update" << std::endl;
-		for (Entity &entity : entities)
-		{
-			for (Component* component : entity.getComponents())
-			{
-				if (component->getID() == 1)
-				{
-					
-
-					std::cout << "Checking position component" << std::endl;
-				}
-			}
-		}
-	}
+	void update();
 private:
 private:
 	PositionComponent * posComp;
