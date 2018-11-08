@@ -6,10 +6,8 @@
 
 class AISystem
 {
-	std::vector<Entity> entities;
-
 public:
-	void addEntity(Entity e) { entities.push_back(e); }
+	void addEntity(Entity e);
 	void update();
 private:
 private:
@@ -18,11 +16,12 @@ private:
 
 	float x = 0;
 	float y = 0;
-	float speed = 10;
+	float speed = 5;
 
 	void BoundaryChecking();
-	int screenWidth = 1280;
-	int screenHeight = 720;
+	int screenWidth = 800;
+	int screenHeight = 400;
 
 	int direction = 0;
+	int index = 0;
 };

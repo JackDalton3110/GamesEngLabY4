@@ -18,7 +18,7 @@ void RenderSystem::update()
 	{
 		for (Component *component : entity.getComponents())
 		{
-			if (component->getID() == 2)
+			if (component->getID() == 1)
 			{
 				std::cout << "Checking position component " << index << std::endl;
 				

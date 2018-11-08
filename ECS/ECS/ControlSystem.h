@@ -10,7 +10,7 @@ class ControlSystem
 public:
 	ControlSystem();
 	void addEntity(Entity e) { entities.push_back(e); }
-	void update(SDL_Event &e);
+	void update();
 	void input(SDL_Event &e);
 
 private:
@@ -23,4 +23,5 @@ private:
 	float speed = 2;
 	int windowWidth = 1000;
 	int windowHeight = 1000;
+	int index = 0;
 };

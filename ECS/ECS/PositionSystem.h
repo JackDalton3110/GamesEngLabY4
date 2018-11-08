@@ -11,7 +11,7 @@ class PositionSystem
 public:
 	void addEntity(Entity e) { entities.push_back(e); }
 	void update() {
-		std::cout << "PositionSystem Update" << std::endl;
+		std::cout << "Position System Update" << std::endl;
 		for (Entity &entity : entities)
 		{
 			for (Component* component : entity.getComponents())

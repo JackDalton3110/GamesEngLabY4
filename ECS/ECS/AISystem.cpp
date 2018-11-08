@@ -1,8 +1,15 @@
 #include "AISystem.h"
 
+void AISystem::addEntity(Entity e) 
+{ 
+	m_entities.push_back(e); 
+}
 
 void AISystem::update()
 {
+
+	std::cout << "AI System" << std::endl;
+
 	for (Entity &entity : m_entities)
 	{
 		for (Component *component : entity.getComponents())
@@ -19,9 +26,16 @@ void AISystem::update()
 				BoundaryChecking();
 				std::pair<float, float> pos = { x,y };
 				posComp->setPos(x, y);
+
+				index++;
+
+				std::cout << "Updating position component" << std::endl;
+				std::cout << "AI posx: " << posComp->getPosX() << " AI posy: " << posComp->getPosY() << std::endl;
 			}
 		}
 	}
+
+	std::cout << "" << std::endl;
 }
 
 void AISystem::BoundaryChecking() {

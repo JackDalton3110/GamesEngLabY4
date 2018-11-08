@@ -6,11 +6,14 @@
 class HealthSystem
 {
 	std::vector<Entity> entities;
+	HealthComponent *healthComp;
 
 public:
 	void addEntity(Entity e) { entities.push_back(e); }
 	void update() 
 	{
+		int index = 0;
+
 		std::cout << "HealthSystem Update" << std::endl;
 		for (Entity &entity : entities)
 		{
@@ -18,11 +21,27 @@ public:
 			{
 				if (component->getID() == 2)
 				{
-					int health = dynamic_cast<HealthComponent*>(component)->getHealth();
+					
+					healthComp = dynamic_cast<HealthComponent*>(component);
+					int healthVal = healthComp->getHealth();
+					if (healthVal > 0)
+					{
+						healthVal -=1;
+						healthComp->setHealth(healthVal);
 
-					std::cout << "Checking Health component" << std::endl;
+						std::cout << "Update health component" << std::endl;
+
+						std::cout << "Health: " << healthComp->getHealth() << std::endl;
+					}
+					else
+					{
+						std::cout << "Entity has 0 health" << std::endl;
+					}
+					index++;
 				}
+				
 			}
 		}
+		std::cout << "" << std::endl;
 	}
 };

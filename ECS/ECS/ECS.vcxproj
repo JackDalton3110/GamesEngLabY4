@@ -151,6 +151,9 @@
     <ClInclude Include="PositionSystem.h" />
     <ClInclude Include="RenderSystem.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="spritesheet.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -14,36 +14,41 @@ void ControlSystem::input(SDL_Event &e)
 			if (comp->getID() == 3)
 			{
 				controlComp = dynamic_cast<ControlComponent*>(comp);
-				switch (e.type)
-				{
-				case SDL_KEYDOWN:
-					switch (e.key.keysym.sym)
-					{
-					default:
-						controlComp->setDir(controlComp->Idle);
-						break;
-					case SDLK_w:
-						controlComp->setDir(controlComp->MoveUp);
-						break;
-					case SDLK_a:
-						controlComp->setDir(controlComp->MoveLeft);
-						break;
-					case SDLK_s:
-						controlComp->setDir(controlComp->MoveDown);
-						break;
-					case SDLK_d:
-						controlComp->setDir(controlComp->MoveRight);
-						break;
-					}
-
-				}
 			}
 		}
 	}
+	switch (e.type)
+	{
+	case SDL_KEYDOWN:
+		switch (e.key.keysym.sym)
+		{
+		default:
+			controlComp->setDir(controlComp->Idle);
+			break;
+		case SDLK_w:
+			controlComp->setDir(controlComp->MoveUp);
+			break;
+		case SDLK_a:
+			controlComp->setDir(controlComp->MoveLeft);
+			break;
+		case SDLK_s:
+			controlComp->setDir(controlComp->MoveDown);
+			break;
+		case SDLK_d:
+			controlComp->setDir(controlComp->MoveRight);
+			break;
+		}
+
+		update();
+
+	}
 }
 
-void ControlSystem::update(SDL_Event &e)
+void ControlSystem::update()
 {
+
+	std::cout << "Control System: " << std::endl;
+
 	for (Entity &entity : entities)
 	{
 		for (Component* component : entity.getComponents())
@@ -56,28 +61,35 @@ void ControlSystem::update(SDL_Event &e)
 				controlComp = dynamic_cast<ControlComponent*>(component);
 			}
 		}
-	}
+		x = pos->getPosX();
+		y = pos->getPosY();
 
-	x = pos->getPosX();
-	y = pos->getPosY();
+		if (controlComp->getDir() == controlComp->MoveUp)
+		{
+			y -= speed;
+		}
+		else if (controlComp->getDir() == controlComp->MoveDown)
+		{
+			y += speed;
+		}
 
-	input(e);
-	if (controlComp->getDir() == controlComp->MoveUp)
-	{
-		y -= speed;
-	}
-	else if (controlComp->getDir() == controlComp->MoveDown)
-	{
-		y += speed;
-	}
+		if (controlComp->getDir() == controlComp->MoveRight)
+		{
+			x += speed;
+		}
+		else if (controlComp->getDir() == controlComp->MoveLeft)
+		{
+			x -= speed;
+		}
+		pos->setPos(x, y);
+		index++;
 
-	if (controlComp->getDir() == controlComp->MoveRight)
-	{
-		x += speed;
+		std::cout << "Updated position component" << std::endl;
+		std::cout << "Posx: " << pos->getPosX() << " Posy: " << pos->getPosY() << std::endl;
 	}
-	else if (controlComp->getDir() == controlComp->MoveLeft)
-	{
-		x -= speed;
-	}
-	pos->setPos(x, y);
+	std::cout << "" << std::endl;
+
+
+
+
 }
