@@ -137,13 +137,15 @@ int main(int argc, char* argv[])
 
 			Entity player;
 			player.addComponent(new HealthComponent()); player.addComponent(new PositionComponent());
-			player.addComponent(new ControlComponent());
+			//player.addComponent(new ControlComponent());
 
 			Entity enemy;
 			enemy.addComponent(new HealthComponent()); enemy.addComponent(new PositionComponent());
 
 			Entity dog;
 			dog.addComponent(new HealthComponent()); dog.addComponent(new PositionComponent());
+			dog.addComponent(new ControlComponent());
+			
 
 			Entity cat;
 			cat.addComponent(new HealthComponent()); cat.addComponent(new PositionComponent());
@@ -161,10 +163,10 @@ int main(int argc, char* argv[])
 			rs.addEntity(cat);
 
 			ai.addEntity(enemy);
-			ai.addEntity(dog);
+			ai.addEntity(player);
 			ai.addEntity(cat);
 
-			cs.addEntity(player);
+			cs.addEntity(dog);
 			SDL_Event e;
 
 			while (!quit)
@@ -179,9 +181,9 @@ int main(int argc, char* argv[])
 						}
 					}
 				}
-				//ai.update();
-				//rs.update();
-				//hs.update();
+				ai.update();
+				rs.update();
+				hs.update();
 
 				SDL_BlitSurface(m_ImageSurface, &endRect, m_ScreenSurface, &startRect);
 				SDL_UpdateWindowSurface(m_window);
