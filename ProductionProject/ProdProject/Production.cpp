@@ -17,7 +17,7 @@ int Production::LottoDraw()
 		while (VectorSizeTest(drawnNumbers) == 0)
 		{
 			numDrawn = rand() % 46 + 1;
-			if(CheckNoDoubles(drawnNumbers,numDrawn)==1 && NumRange(drawnNumbers,numDrawn)==1)
+			if(CheckNoDoubles(drawnNumbers,numDrawn)==1 && NumRange(numDrawn)==1)
 			drawnNumbers.push_back(numDrawn);
 		}
 	}
@@ -38,7 +38,7 @@ int Production::LottoEntries()
 	{
 		std::cout << "Enter Lotto number" << std::endl;
 		std::cin>>entryNum;
-		if (CheckNoDoubles(enteredNums,entryNum) == 1 &&NumRange(enteredNums, entryNum) == 1)
+		if (CheckNoDoubles(enteredNums,entryNum) == 1 &&NumRange(entryNum) == 1)
 		{
 			enteredNums.push_back(entryNum);
 		}
@@ -47,6 +47,7 @@ int Production::LottoEntries()
 			std::cout << "invlaid Number try again" << std::endl;
 		}
 	}
+	std::cout << "" << std::endl;
 	std::cout << "Your Numbers are: " << enteredNums[0] << ", " << enteredNums[1] << ", " << enteredNums[2] << ", " << enteredNums[3] << ", " << enteredNums[4] << ", " << enteredNums[5] << std::endl;
 	return 0;
 }
@@ -60,14 +61,19 @@ int Production::CheckForWinner(std::vector<int>entered, std::vector<int>drawn)
 	set_intersection(entered.begin(), entered.end(), drawn.begin(), drawn.end(), std::back_inserter(winners));
 	if (winners.size() != 0)
 	{
-		std::cout << "Your winning numbers were: ";
-		for (int i = 0; i < winners.size(); i++)
+		std::cout << "" << std::endl;
+		std::cout << "Your winning numbers were: "<< winners[0];
+		for (int i = 1; i < winners.size(); i++)
 		{
-			std::cout << winners[i] << ", " << std::endl;
+			std::cout << ", "<<winners[i];
 		}
+		std::cout << "" << std::endl;
 	}
 	else
+	{
+		std::cout << " " << std::endl;
 		std::cout << "You were not a winner, try again!" << std::endl;
+	}
 	return 0;
 }
 

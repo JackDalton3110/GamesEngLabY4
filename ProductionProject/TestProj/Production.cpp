@@ -18,30 +18,31 @@ bool Production::CheckNoDoubles(std::vector<int> v, int val)
 	auto iter = std::unique(v.begin(), v.end());
 	for (int i = 0; i < v.size(); i++)
 	{
-		if (val != v[i])
+		if (val == v[i])
 		{
-			valDouble = true;
+			valDouble = false;
+			break;//checks if number that is about to be added isn't already in vector
 		}
 		else
-			valDouble = false;
+			valDouble = true;
 	}
 	bool NoDoubles = (iter == v.end());
 	NoDoubles = valDouble;
 	return NoDoubles;
 }
 
-bool Production::NumRange(std::vector<int> v, int val)
+bool Production::NumRange(int val)
 {
-	for (auto iter = v.begin(); iter != v.end(); ++iter)
+	int result =1;
+	if (val < 1 || val > 46)
 	{
-		if ((*iter) > 46 || (*iter) < 1)
-		{
-			return 0;
-		}
-		if (val >= 1 && val <= 46)
-		{
-			return 0;
-		}
+		result = 0; //checks that number about to entered to vector is within limit
 	}
-	return 1;
+	else
+	{
+		result = 1;
+	}
+	
+	return result;
 }
+

@@ -13,7 +13,7 @@ public:
 	int CheckForWinner(std::vector<int> entered, std::vector<int>drawn);
 	int VectorSizeTest(std::vector<int> v);
 	bool CheckNoDoubles(std::vector<int> v, int val);
-	bool NumRange(std::vector<int> v, int val);
+	bool NumRange(int val);
 protected:
 	std::vector<int>enteredNums;
 	std::vector<int>drawnNumbers;
