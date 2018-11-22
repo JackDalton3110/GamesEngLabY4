@@ -37,14 +37,18 @@ int Production::LottoEntries()
 	while (VectorSizeTest(enteredNums)==0)
 	{
 		std::cout << "Enter Lotto number" << std::endl;
-		std::cin>>entryNum;
+			std::cin>>entryNum;
+
 		if (CheckNoDoubles(enteredNums,entryNum) == 1 &&NumRange(entryNum) == 1)
 		{
 			enteredNums.push_back(entryNum);
 		}
-		else
+		else if (std::cin.fail())
 		{
 			std::cout << "invlaid Number try again" << std::endl;
+			std::cin.clear(); // clear the error flags
+			std::cin.ignore(numeric_limits<streamsize>::max(), '\n'); /* ignore the rest of what's left in the input buffer
+																	  because cin stops reading at the first bad character*/
 		}
 	}
 	std::cout << "" << std::endl;

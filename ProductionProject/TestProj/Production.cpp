@@ -21,6 +21,7 @@ bool Production::CheckNoDoubles(std::vector<int> v, int val)
 		if (val == v[i])
 		{
 			valDouble = false;
+			std::cout << "number already entered" << std::endl;
 			break;//checks if number that is about to be added isn't already in vector
 		}
 		else
@@ -37,6 +38,7 @@ bool Production::NumRange(int val)
 	if (val < 1 || val > 46)
 	{
 		result = 0; //checks that number about to entered to vector is within limit
+		std::cout << "Invalid number, enter between 1 - 46" << std::endl;
 	}
 	else
 	{

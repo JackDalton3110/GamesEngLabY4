@@ -4,6 +4,11 @@
 #include <random>
 #include <iostream>
 #include <set>
+#include <limits>
+
+using std::numeric_limits;
+using std::streamsize;
+
 
 class Production {
 public:
