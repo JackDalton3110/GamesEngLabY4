@@ -47,4 +47,3 @@ bool Production::NumRange(int val)
 	
 	return result;
 }
-
